@@ -19,3 +19,15 @@ ps -eo pid,ppid,cmd,%cpu --sort=-%cpu | head -n 6
 
 echo "Top 5 processes by Memory usage"
 ps -eo pid,ppid,cmd,%mem --sort=-%mem | head -n 6
+
+echo "OS version"
+cat /etc/os-release | grep PRETTY_NAME | cut -d '=' -f2 | tr -d '"' 
+
+echo "Kernel version"
+uname -r
+
+echo "Uptime"
+uptime | awk -F', ' '{print $1}'
+
+echo "Load Average"
+uptime | awk -F'load average:' '{ print $2 }'
